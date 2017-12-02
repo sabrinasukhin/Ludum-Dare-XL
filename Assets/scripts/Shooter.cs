@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public GameObject bullet;
     public float shootSpeed = 3;
+    public GameObject bulletPrefab;
     
     void Update()
     {
@@ -13,7 +13,7 @@ public class Shooter : MonoBehaviour
         {
             Camera cam = (Camera)(this.gameObject.GetComponent(typeof(Camera)));
             
-            GameObject bullInst = Instantiate(bullet, cam.transform.position, cam.transform.rotation);
+            GameObject bullInst = Instantiate(bulletPrefab, cam.transform.position, cam.transform.rotation) as GameObject;
             
             Rigidbody brb = (Rigidbody)(bullInst.GetComponent(typeof(Rigidbody)));
             
