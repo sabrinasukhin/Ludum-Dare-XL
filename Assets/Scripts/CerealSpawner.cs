@@ -48,6 +48,7 @@ public class CerealSpawner : MonoBehaviour
         {
             GameObject newBox = Instantiate(cerealPrefab, transform.position, transform.rotation);
             newBox.GetComponent<CerealBox>().spawner = this;
+            newBox.transform.eulerAngles = new Vector3(0, Random.value*360, 0);
             
             noCerealPresent = false;
         }

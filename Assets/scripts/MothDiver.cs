@@ -11,14 +11,13 @@ public class MothDiver : MonoBehaviour
     public Transform player;
 
     private Animator anim;
-    private bool chasing;
+    public bool chasing = false;
 
     private GameObject plr;
 
     // Use this for initialization
     void Start()
     {
-        chasing = false;
         anim = GetComponent<Animator>();
 
         plr = player.gameObject;
