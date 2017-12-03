@@ -36,20 +36,26 @@ public class Health : MonoBehaviour
                 Destroy(cerealBox, 0.00f);
             }
         }
-
         else
         {
             crlBox.GetComponent<Renderer>().material = norm;
         }
-        currentHealth -= decreaseTime * Time.deltaTime;
-        healthBar.transform.localScale += new Vector3(-0.0001f, 0, 0);
+
+        //currentHealth -= decreaseTime * Time.deltaTime;
+        //healthBar.transform.localScale += new Vector3(-0.0001f, 0, 0);
         test.text = "" + currentHealth;
     }
 
     public void AddHealth()
     {
         currentHealth += 20.00f;
-        healthBar.transform.localScale += new Vector3(0.10f, 0, 0);
+        healthBar.transform.localScale += new Vector3(0.001f, 0, 0);
+    }
+
+    public void DealDamage()
+    {
+        currentHealth -= 10.00f;
+        healthBar.transform.localScale += new Vector3(-.001f, 0, 0);
     }
     
 }

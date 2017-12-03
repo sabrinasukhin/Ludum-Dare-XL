@@ -13,6 +13,8 @@ public class MothDiver : MonoBehaviour
     private Animator anim;
     private bool chasing;
 
+    public GameObject plr;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -45,6 +47,14 @@ public class MothDiver : MonoBehaviour
 		
         transform.Rotate(Vector3.up * 90);
 	}
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Player")
+        {
+            gameObject.GetComponent<Health>().DealDamage();
+        }
+    }
     
     void BeginChase()
     {
