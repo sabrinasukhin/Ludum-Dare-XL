@@ -13,13 +13,15 @@ public class MothDiver : MonoBehaviour
     private Animator anim;
     private bool chasing;
 
-    public GameObject plr;
+    private GameObject plr;
 
 	// Use this for initialization
 	void Start ()
     {
 		chasing = false;
         anim = GetComponent<Animator>();
+
+        plr = player.gameObject;
 	}
 	
 	// Update is called once per frame
@@ -52,7 +54,8 @@ public class MothDiver : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            gameObject.GetComponent<Health>().DealDamage();
+            plr.GetComponent<Health>().DealDamage();
+            Destroy(gameObject);
         }
     }
     
