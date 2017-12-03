@@ -2,18 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletDestroy : MonoBehaviour {
-
-	// Use this for initialization
-	void Start ()
+public class BulletDestroy : MonoBehaviour
+{
+    void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameObject.name == "Bullet(Clone)")
+        if (gameObject.name == "Projectile(Clone)")
         {
             Destroy(gameObject, 2.50f);
         }
