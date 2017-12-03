@@ -4,16 +4,52 @@ using UnityEngine;
 
 public class CerealSpawner : MonoBehaviour
 {
-
-    public List<GameObject> spawnList = new List<GameObject>();
+    public float minInterval = 20.0f;
+    public float maxInterval = 60.0f;
+    
+    public int maxCereals = 3;
+    
+    public GameObject cerealPrefab;
+    
+    public bool noCerealPresent = true;
+    
+    private float timeToNextSpawn;
+    private float intervalRange;
 
     void Start ()
     {
-        int num1 = Random.Range(0, 3);
+        Destroy(GetComponent<MeshRenderer>());  //spawner should be invisible
+        
+        intervalRange = maxInterval - minInterval;  //set up timing
+        timeToNextSpawn = intervalRange * Random.value;
+        
+        noCerealPresent = true;
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()  //handles spawn timing
+    {
+        if(!noCerealPresent)
+            return;
+        
+        timeToNextSpawn -= Time.deltaTime;
+        
+        if(timeToNextSpawn <= 0)
+        {
+            SpawnBox();
+            timeToNextSpawn = minInterval + (intervalRange * Random.value);
+        }
 	}
+    
+    void SpawnBox()
+    {
+        int numBoxes = GameObject.FindGameObjectsWithTag("CerealBox").Length;
+        
+        if(numBoxes < maxCereals)
+        {
+            GameObject newBox = Instantiate(cerealPrefab, transform.position, transform.rotation);
+            newBox.GetComponent<CerealBox>().spawner = this;
+            
+            noCerealPresent = false;
+        }
+    }
 }
