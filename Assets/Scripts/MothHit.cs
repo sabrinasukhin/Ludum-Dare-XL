@@ -10,11 +10,12 @@ public class MothHit : MonoBehaviour
         {
             Destroy(collider.gameObject);
             Destroy(gameObject);
-            //Debug.Log("die");
+            Debug.Log("die");
         }
-        else if (collider.tag != "Moth")
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
     }
 }
