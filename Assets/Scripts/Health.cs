@@ -5,20 +5,21 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public GameObject healthBar;
     public float startingHealth = 100.00f;
     private float currentHealth;
     public float decreaseTime = 5.00f;
     public Camera cam;
-    public Text test;
+    //public Text test;
     public GameObject cerealBox;
     public GameObject crlBox;
     public Material highlight;
     public Material norm;
+    public Slider healthBar;
 
     void Start()
     {
         currentHealth = startingHealth;
+        healthBar.value = CalcHealth();
     }
 
     void Update()
@@ -28,7 +29,7 @@ public class Health : MonoBehaviour
         int layerMask = 1 << 8;
         if (Physics.Raycast(rayOrigin, fwd, 2, layerMask))
         {
-            Debug.DrawRay(rayOrigin, fwd, Color.green);
+            //Debug.DrawRay(rayOrigin, fwd, Color.green);
             crlBox.GetComponent<Renderer>().material = highlight;
             if (Input.GetKey("e"))
             {
@@ -41,21 +42,26 @@ public class Health : MonoBehaviour
             crlBox.GetComponent<Renderer>().material = norm;
         }
 
-        //currentHealth -= decreaseTime * Time.deltaTime;
-        //healthBar.transform.localScale += new Vector3(-0.0001f, 0, 0);
-        test.text = "" + currentHealth;
+        currentHealth -= decreaseTime * Time.deltaTime;
+        healthBar.value = CalcHealth();
+        //test.text = "" + currentHealth;
+    }
+
+    float CalcHealth()
+    {
+        return currentHealth / startingHealth;
     }
 
     public void AddHealth()
     {
         currentHealth += 20.00f;
-        healthBar.transform.localScale += new Vector3(0.001f, 0, 0);
+        healthBar.value = CalcHealth();
     }
 
     public void DealDamage()
     {
         currentHealth -= 10.00f;
-        healthBar.transform.localScale += new Vector3(-.001f, 0, 0);
+        healthBar.value = CalcHealth();
     }
     
 }
