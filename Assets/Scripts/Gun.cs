@@ -9,12 +9,6 @@ public class Gun : MonoBehaviour
     public GameObject projectile;
     GameObject tempProjectile;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update ()
     {
         Aim();
