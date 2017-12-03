@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public float force = 100f;
+    private float force = 1000f;
     public Camera cam;
     public GameObject projectile;
     GameObject tempProjectile;

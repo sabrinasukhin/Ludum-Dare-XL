@@ -8,7 +8,7 @@ SketchUpImporter:
   selectedNodes: 000000000100000002000000
   assetHash:
     serializedVersion: 2
-    Hash: 318eeda74ae37f840f617a2d2bff695f
+    Hash: 39e35911e1a37fc3276b56ced2abc474
   longitude: -105.242139
   latitude: 40.018309
   northCorrection: -0
@@ -23,7 +23,7 @@ SketchUpImporter:
       orthoSize: 1
       isPerspective: 1
     scenes: []
-  serializedVersion: 22
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
     100002: LudumDareHouse
@@ -32,27 +32,11 @@ SketchUpImporter:
     2300000: LudumDareHouse
     3300000: LudumDareHouse
     4300000: Mesh LudumDareHouse
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Formica Blue
-    second: {fileID: 2100000, guid: 7fb048885e6f2744d82900185de4c4c0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _1
-    second: {fileID: 2100000, guid: 65556743fb2bed7449c0865b47416c9d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _2
-    second: {fileID: 2100000, guid: ca82d4ca4eeaf994fb92302cd8e72130, type: 2}
+    6400000: LudumDareHouse
   materials:
     importMaterials: 1
     materialName: 2
     materialSearch: 0
-    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -65,25 +49,20 @@ SketchUpImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 0.0254
     meshCompression: 0
-    addColliders: 0
-    importVisibility: 1
+    addColliders: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -99,7 +78,6 @@ SketchUpImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 4
   importAnimation: 0
   copyAvatar: 0
   humanDescription:

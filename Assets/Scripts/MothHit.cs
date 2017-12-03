@@ -12,5 +12,9 @@ public class MothHit : MonoBehaviour
             Destroy(gameObject);
             //Debug.Log("die");
         }
+        else if (collider.tag != "Moth")
+        {
+            Destroy(gameObject);
+        }
     }
 }

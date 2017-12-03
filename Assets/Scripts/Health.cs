@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float startingHealth = 100.00f;
+    private float startingHealth = 100.00f;
     private float currentHealth;
-    public float decreaseTime = 5.00f;
+    private float decreaseTime = 1.50f;
     public Camera cam;
     //public Text test;
     public Material highlight;
     public Material norm;
     public Slider healthBar;
-    
+
     private GameObject cerealParent = null;
     private GameObject cerealChild = null;
     private bool cerealExists = false;
@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if(cerealExists)
+        if (cerealExists)
         {
             try
             {
@@ -38,22 +38,22 @@ public class Health : MonoBehaviour
                 cerealExists = false;
             }
         }
-        
+
         Vector3 rayOrigin = cam.ViewportToWorldPoint(new Vector3(0, 0, 0));
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         int layerMask = 1 << 8;
-        
+
         RaycastHit hit;
-        
+
         if (Physics.Raycast(rayOrigin, fwd, out hit, 2, layerMask))
         {
             cerealParent = hit.transform.gameObject;
             cerealChild = hit.transform.GetChild(0).gameObject;
             cerealExists = true;
-            
-            Debug.DrawRay(rayOrigin, fwd, Color.green);
+
+            //Debug.DrawRay(rayOrigin, fwd, Color.green);
             cerealChild.GetComponent<Renderer>().material = highlight;
-            
+
             if (Input.GetKey("e"))
             {
                 Destroy(cerealParent);
@@ -62,9 +62,15 @@ public class Health : MonoBehaviour
             }
         }
 
+        if (currentHealth == 0)
+        {
+            Die();
+        }
+
         currentHealth -= decreaseTime * Time.deltaTime;
         healthBar.value = CalcHealth();
         //test.text = "" + currentHealth;
+
     }
 
     float CalcHealth()
@@ -78,10 +84,14 @@ public class Health : MonoBehaviour
         healthBar.value = CalcHealth();
     }
 
-    public void DealDamage()
+    public void LoseHealth()
     {
         currentHealth -= 10.00f;
         healthBar.value = CalcHealth();
     }
-    
+
+    void Die()
+    {
+        Debug.Log("You died!");
+    }
 }
