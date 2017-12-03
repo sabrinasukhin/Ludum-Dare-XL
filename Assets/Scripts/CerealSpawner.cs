@@ -9,8 +9,8 @@ public class CerealSpawner : MonoBehaviour
 
     void Start ()
     {
-		
-	}
+        int num1 = Random.Range(0, 3);
+    }
 	
 	// Update is called once per frame
 	void Update () {
