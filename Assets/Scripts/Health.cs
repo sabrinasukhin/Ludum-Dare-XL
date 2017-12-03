@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +11,13 @@ public class Health : MonoBehaviour
     public float decreaseTime = 5.00f;
     public Camera cam;
     //public Text test;
-    public GameObject cerealBox;
-    public GameObject crlBox;
     public Material highlight;
     public Material norm;
     public Slider healthBar;
+    
+    private GameObject cerealParent = null;
+    private GameObject cerealChild = null;
+    private bool cerealExists = false;
 
     void Start()
     {
@@ -24,22 +27,39 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        if(cerealExists)
+        {
+            try
+            {
+                cerealChild.GetComponent<Renderer>().material = norm;
+            }
+            catch (Exception e)
+            {
+                cerealExists = false;
+            }
+        }
+        
         Vector3 rayOrigin = cam.ViewportToWorldPoint(new Vector3(0, 0, 0));
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         int layerMask = 1 << 8;
-        if (Physics.Raycast(rayOrigin, fwd, 2, layerMask))
+        
+        RaycastHit hit;
+        
+        if (Physics.Raycast(rayOrigin, fwd, out hit, 2, layerMask))
         {
-            //Debug.DrawRay(rayOrigin, fwd, Color.green);
-            crlBox.GetComponent<Renderer>().material = highlight;
+            cerealParent = hit.transform.gameObject;
+            cerealChild = hit.transform.GetChild(0).gameObject;
+            cerealExists = true;
+            
+            Debug.DrawRay(rayOrigin, fwd, Color.green);
+            cerealChild.GetComponent<Renderer>().material = highlight;
+            
             if (Input.GetKey("e"))
             {
+                Destroy(cerealParent);
+                cerealExists = false;
                 AddHealth();
-                Destroy(cerealBox, 0.00f);
             }
-        }
-        else
-        {
-            crlBox.GetComponent<Renderer>().material = norm;
         }
 
         currentHealth -= decreaseTime * Time.deltaTime;
