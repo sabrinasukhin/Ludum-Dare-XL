@@ -7,11 +7,14 @@ public class Health : MonoBehaviour
 {
     public GameObject healthBar;
     public float startingHealth = 100.00f;
-    public float currentHealth;
+    private float currentHealth;
     public float decreaseTime = 5.00f;
-    bool damaged;
+    public Camera cam;
     public Text test;
+    public GameObject cerealBox;
     public GameObject crlBox;
+    public Material highlight;
+    public Material norm;
 
     void Start()
     {
@@ -20,22 +23,24 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        Vector3 rayOrigin = cam.ViewportToWorldPoint(new Vector3(0, 0, 0));
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        if (Input.GetKey("e"))
+        int layerMask = 1 << 8;
+        if (Physics.Raycast(rayOrigin, fwd, 2, layerMask))
         {
-            AddHealth();
-        }
-        
-            if (Physics.Raycast(new Vector3(0, 0, 0), fwd, 10, 8))
-            {
-                if (Input.GetKey("e"))
+            Debug.DrawRay(rayOrigin, fwd, Color.green);
+            crlBox.GetComponent<Renderer>().material = highlight;
+            if (Input.GetKey("e"))
             {
                 AddHealth();
-                Destroy(crlBox, 0.00f);
+                Destroy(cerealBox, 0.00f);
             }
-                
-            }
+        }
 
+        else
+        {
+            crlBox.GetComponent<Renderer>().material = norm;
+        }
         currentHealth -= decreaseTime * Time.deltaTime;
         healthBar.transform.localScale += new Vector3(-0.0001f, 0, 0);
         test.text = "" + currentHealth;
