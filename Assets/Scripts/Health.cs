@@ -67,6 +67,16 @@ public class Health : MonoBehaviour
             Die();
         }
 
+        if (currentHealth > 100)
+        {
+            currentHealth = 100;
+        }
+
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
         currentHealth -= decreaseTime * Time.deltaTime;
         healthBar.value = CalcHealth();
         //test.text = "" + currentHealth;
