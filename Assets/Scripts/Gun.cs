@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public float force = 100f;
+    private float force = 1000f;
     public Camera cam;
     public GameObject projectile;
     GameObject tempProjectile;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update ()
     {
         Aim();

@@ -10,7 +10,12 @@ public class MothHit : MonoBehaviour
         {
             Destroy(collider.gameObject);
             Destroy(gameObject);
-            //Debug.Log("die");
+            Debug.Log("die");
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
     }
 }

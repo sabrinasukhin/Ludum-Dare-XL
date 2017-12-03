@@ -53,7 +53,7 @@ public class MothDiver : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            plr.GetComponent<Health>().DealDamage();
+            plr.GetComponent<Health>().LoseHealth();
             Destroy(gameObject);
         }
     }
