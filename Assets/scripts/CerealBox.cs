@@ -6,6 +6,7 @@ using UnityEngine;
 public class CerealBox : MonoBehaviour
 {
     public float health = 20.0f;
+    public AudioSource audioMothEat;
     
     public CerealSpawner spawner;
 

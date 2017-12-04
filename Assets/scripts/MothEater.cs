@@ -57,6 +57,7 @@ public class MothEater : MonoBehaviour
     {
         chasing = true;
         targetTransform = target.gameObject.transform;
+        anim.SetBool("IsFlying", true);
     }
     
     void BecomeDiver()
