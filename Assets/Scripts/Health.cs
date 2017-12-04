@@ -9,11 +9,16 @@ public class Health : MonoBehaviour
     private float startingHealth = 100.00f;
     private float currentHealth;
     private float decreaseTime = 1.50f;
+    
+    
     public Camera cam;
     //public Text test;
     public Material highlight;
     public Material norm;
     public Slider healthBar;
+    public AudioSource audioEat;
+    
+    
     private bool soundPlayed = false;
 
     private GameObject cerealParent = null;
@@ -67,6 +72,7 @@ public class Health : MonoBehaviour
                 Destroy(cerealParent);
                 cerealExists = false;
                 AddHealth();
+                audioEat.Play();
             }
         }
 
