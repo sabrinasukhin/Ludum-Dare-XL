@@ -34,18 +34,21 @@ public class MothDiver : MonoBehaviour
                 return;
         }
 
+        //the following math relies on the moth facing "forward", which the model does not.
         transform.Rotate(Vector3.up * -90);
-
+        
         Rigidbody rb = GetComponent<Rigidbody>();
-
+        
+        //slowly rotate towards the correct direction
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             Quaternion.LookRotation((player.position - transform.position)),
             Time.deltaTime * rotationSpeed
         );
+        
+        rb.AddForce(transform.rotation * Vector3.forward * moveSpeed - rb.velocity, ForceMode.VelocityChange);
 
-        rb.velocity = transform.rotation * Vector3.forward * moveSpeed;
-
+        //correctly reorient model
         transform.Rotate(Vector3.up * 90);
     }
 

@@ -48,7 +48,7 @@ public class MothEater : MonoBehaviour
             Time.deltaTime * rotationSpeed
         );
 
-        rb.velocity = transform.rotation * Vector3.forward * moveSpeed;
+        rb.AddForce(transform.rotation * Vector3.forward * moveSpeed - rb.velocity, ForceMode.VelocityChange);
 
         transform.Rotate(Vector3.up * 90);
 	}
