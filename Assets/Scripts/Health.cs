@@ -69,24 +69,21 @@ public class Health : MonoBehaviour
                 AddHealth();
             }
         }
+
         else
-            cerealExists = false;
-
-        //soundPlayed = false;
-
-        if (currentHealth == 0)
         {
+            cerealExists = false;
+        }
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
             Die();
         }
 
-        if (currentHealth > 100)
+        else if (currentHealth > 100)
         {
             currentHealth = 100;
-        }
-
-        if (currentHealth < 0)
-        {
-            currentHealth = 0;
         }
 
         currentHealth -= decreaseTime * Time.deltaTime;
