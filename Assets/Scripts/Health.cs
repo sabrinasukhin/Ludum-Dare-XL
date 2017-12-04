@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     public Material highlight;
     public Material norm;
     public Slider healthBar;
+    private bool soundPlayed = false;
 
     private GameObject cerealParent = null;
     private GameObject cerealChild = null;
@@ -49,6 +50,13 @@ public class Health : MonoBehaviour
         {
             cerealParent = hit.transform.gameObject;
             cerealChild = hit.transform.GetChild(0).gameObject;
+
+            if (cerealExists == false)
+            {
+                cerealParent.GetComponent<HighlightSound>().PlayHLSound();
+                //soundPlayed = true;
+            }
+
             cerealExists = true;
 
             //Debug.DrawRay(rayOrigin, fwd, Color.green);
@@ -61,6 +69,10 @@ public class Health : MonoBehaviour
                 AddHealth();
             }
         }
+        else
+            cerealExists = false;
+
+        //soundPlayed = false;
 
         if (currentHealth == 0)
         {
