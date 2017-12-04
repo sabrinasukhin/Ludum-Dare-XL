@@ -1,27 +1,22 @@
 fileFormatVersion: 2
-guid: 591178c4eb08ccc4e8eaca2e127a6710
-timeCreated: 1512333055
+guid: 3ef1afbd0f071cc48aa8ed52eaa6aa61
+timeCreated: 1512354268
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Head
-    100002: //RootNode
-    100004: Shaft
-    100006: HeadInverse
-    400000: Head
-    400002: //RootNode
-    400004: Shaft
-    400006: HeadInverse
-    2300000: Head
-    2300002: Shaft
-    2300004: HeadInverse
-    3300000: Head
-    3300002: Shaft
-    3300004: HeadInverse
-    4300000: Head
-    4300002: Shaft
-    4300004: HeadInverse
+    100000: Cube
+    100002: Cube_001
+    100004: //RootNode
+    400000: Cube
+    400002: Cube_001
+    400004: //RootNode
+    2300000: Cube
+    2300002: Cube_001
+    3300000: Cube
+    3300002: Cube_001
+    4300000: Cube_001
+    4300002: Cube
     7400000: Default Take
     9500000: //RootNode
   materials:
