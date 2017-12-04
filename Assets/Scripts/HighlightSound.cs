@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class HighlightSound : MonoBehaviour
 {
-    AudioSource audioSource;
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+    public AudioSource audioSource;
 
     public void PlayHLSound()
     {
