@@ -16,9 +16,12 @@ public class MothEater : MonoBehaviour
     private bool chasing = false;
     private Transform targetTransform;
     
+    private float upDownOffset = 0.0f;
+    
 	void Start ()
     {
 		anim = GetComponent<Animator>();
+        upDownOffset = Random.value * 6.18f;
 	}
 	
 	// Update is called once per frame
@@ -41,7 +44,7 @@ public class MothEater : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
-            Quaternion.LookRotation((targetTransform.position - transform.position + Vector3.up * 0.5f)),
+            Quaternion.LookRotation((targetTransform.position - transform.position + Vector3.up * (Mathf.Sin(2.0f*(Time.time + upDownOffset))*0.3f + 0.5f))),
             Time.deltaTime * rotationSpeed
         );
 

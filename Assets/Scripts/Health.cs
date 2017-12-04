@@ -46,7 +46,7 @@ public class Health : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(rayOrigin, fwd, out hit, 2, layerMask))
+        if (Physics.Raycast(rayOrigin, fwd, out hit, 2.5f, layerMask))
         {
             cerealParent = hit.transform.gameObject;
             cerealChild = hit.transform.GetChild(0).gameObject;

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CerealBox : MonoBehaviour
 {
+    public float health = 20.0f;
+    
     public CerealSpawner spawner;
 
     void OnDestroy()
