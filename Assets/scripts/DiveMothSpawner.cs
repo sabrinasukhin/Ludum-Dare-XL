@@ -7,15 +7,18 @@ public class DiveMothSpawner : MonoBehaviour
     public float minInterval = 20.0f;
     public float maxInterval = 60.0f;
     
-    public Transform player;
     public GameObject mothPrefab;
     
     private float timeToNextSpawn;
     private float intervalRange;
     private Vector3 bottomOrigin;
+    
+    private Transform player;
 
 	void Start ()
     {
+        player = GameObject.FindGameObjectsWithTag("MainCamera")[0].transform;
+        
         Destroy(GetComponent<MeshRenderer>());  //spawner should be invisible
         
 		intervalRange = maxInterval - minInterval;  //set up timing
