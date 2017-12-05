@@ -70,7 +70,7 @@ public class MothDiver : MonoBehaviour
         spawner.numMoths--;
     }
 
-    void BeginChase()
+    public void BeginChase()
     {
         chasing = true;
         anim.SetBool("IsFlying", true);

@@ -33,7 +33,11 @@ public class MothEater : MonoBehaviour
             BeginChase();
         
         if(chasing && target.noCerealPresent)
-            BecomeDiver();
+        {
+            Destroy(gameObject);
+            return;
+        }
+            //BecomeDiver();
         
         if(!chasing)
             return;
@@ -74,7 +78,7 @@ public class MothEater : MonoBehaviour
         MothDiver diveScript = newMoth.GetComponent<MothDiver>();
         
         diveScript.player = player.transform;
-        diveScript.chasing = true;
+        diveScript.BeginChase();
         
         Destroy(gameObject);
     }
