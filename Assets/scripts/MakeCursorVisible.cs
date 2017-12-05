@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class MakeCursorVisible : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		Cursor.visible = true;
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Start ()
+    {
+		Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
 	}
 }
