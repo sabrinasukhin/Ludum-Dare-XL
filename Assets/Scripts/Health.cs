@@ -17,9 +17,6 @@ public class Health : MonoBehaviour
     public Material norm;
     public Slider healthBar;
     public AudioSource audioEat;
-    
-    
-    private bool soundPlayed = false;
 
     private GameObject cerealParent = null;
     private GameObject cerealChild = null;
