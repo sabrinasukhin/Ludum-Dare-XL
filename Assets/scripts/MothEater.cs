@@ -6,6 +6,8 @@ public class MothEater : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     public float rotationSpeed = 3.0f;
+    public float eatSpeed = 1.0f;
+    public float eatDistance = 2.0f;
     
     public EaterMothSpawner spawner;
     public CerealSpawner target;
@@ -35,6 +37,9 @@ public class MothEater : MonoBehaviour
         
         if(!chasing)
             return;
+        
+        if(Vector3.Distance(transform.position, targetTransform.position) <= eatDistance)
+            target.currentBox.GetComponent<CerealBox>().Damage(Time.deltaTime * eatSpeed);
         
         //move towards cereal
         
@@ -76,6 +81,7 @@ public class MothEater : MonoBehaviour
     
     void OnDestroy()
     {
+        target.numMoths--;
         spawner.noMoth = true;
     }
 }

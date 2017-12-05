@@ -9,6 +9,10 @@ public class DiveMothSpawner : MonoBehaviour
     
     public GameObject mothPrefab;
     
+    public int maxMoths = 2;
+    
+    public int numMoths = 0;
+    
     private float timeToNextSpawn;
     private float intervalRange;
     private Vector3 bottomOrigin;
@@ -17,6 +21,8 @@ public class DiveMothSpawner : MonoBehaviour
 
 	void Start ()
     {
+        int numMoths = 0;
+    
         player = GameObject.FindGameObjectsWithTag("MainCamera")[0].transform;
         
         Destroy(GetComponent<MeshRenderer>());  //spawner should be invisible
@@ -40,11 +46,17 @@ public class DiveMothSpawner : MonoBehaviour
     
     void SpawnMoth()
     {
+        if(numMoths >= maxMoths)
+            return;
+        
         GameObject newMoth = Instantiate(mothPrefab);
         
         newMoth.transform.position = (transform.rotation * (new Vector3((Random.value-0.5f)*transform.localScale.x, newMoth.transform.position.y, (Random.value-0.5f)*transform.localScale.z))) + bottomOrigin;
         newMoth.transform.rotation = transform.rotation;
         
         newMoth.GetComponent<MothDiver>().player = player;
+        newMoth.GetComponent<MothDiver>().spawner = this;
+        
+        numMoths++;
     }
 }

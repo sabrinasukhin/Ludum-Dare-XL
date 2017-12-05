@@ -12,11 +12,15 @@ public class EaterMothSpawner : MonoBehaviour
     
     public bool noMoth = true;
     
+    private Vector3 bottomOrigin;
+    
     private float timeToNextSpawn;
     private float intervalRange;
 
 	void Start ()
     {
+        bottomOrigin = (transform.rotation * (new Vector3(0.0f, -transform.localScale.y/2.0f, 0.0f))) + transform.position;
+        
         Destroy(GetComponent<MeshRenderer>());  //spawner should be invisible
         
         intervalRange = maxInterval - minInterval;  //set up timing
@@ -41,12 +45,14 @@ public class EaterMothSpawner : MonoBehaviour
     
     void SpawnMoth()
     {
-        GameObject newMoth = Instantiate(mothPrefab, transform.position, transform.rotation);
+        GameObject newMoth = Instantiate(mothPrefab, bottomOrigin, transform.rotation);
         
         MothEater eatScript = newMoth.GetComponent<MothEater>();
         eatScript.spawner = this;
         eatScript.target = target;
         
         noMoth = false;
+        
+        target.numMoths++;
     }
 }

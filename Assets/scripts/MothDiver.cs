@@ -9,11 +9,15 @@ public class MothDiver : MonoBehaviour
     public float rotationSpeed = 3.0f;
 
     public Transform player;
+    
+    public AudioSource audioFly;
 
     private Animator anim;
     public bool chasing = false;
 
     private GameObject plr;
+    
+    public DiveMothSpawner spawner;
 
     // Use this for initialization
     void Start()
@@ -60,10 +64,18 @@ public class MothDiver : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    void OnDestroy()
+    {
+        spawner.numMoths--;
+    }
 
     void BeginChase()
     {
         chasing = true;
         anim.SetBool("IsFlying", true);
+        
+        audioFly.loop = true;
+        audioFly.Play();
     }
 }

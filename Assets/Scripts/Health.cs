@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(rayOrigin, fwd, out hit, 2.5f, layerMask))
+        if (Physics.Raycast(rayOrigin, fwd, out hit, 2.5f, layerMask) && hit.transform.gameObject.GetComponent<CerealBox>().CanHighlight())
         {
             cerealParent = hit.transform.gameObject;
             cerealChild = hit.transform.GetChild(0).gameObject;
@@ -66,9 +66,8 @@ public class Health : MonoBehaviour
 
             if (Input.GetKey("e"))
             {
-                Destroy(cerealParent);
                 cerealExists = false;
-                AddHealth();
+                AddHealth(cerealParent.GetComponent<CerealBox>().Eat());
                 audioEat.Play();
             }
         }
@@ -100,9 +99,9 @@ public class Health : MonoBehaviour
         return currentHealth / startingHealth;
     }
 
-    public void AddHealth()
+    public void AddHealth(float amt)
     {
-        currentHealth += 20.00f;
+        currentHealth += amt;
         healthBar.value = CalcHealth();
     }
 
