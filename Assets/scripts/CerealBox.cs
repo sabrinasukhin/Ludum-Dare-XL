@@ -12,7 +12,12 @@ public class CerealBox : MonoBehaviour
     
     public GameObject ashPrefab;
     
-    float healthPrev = 20.0f;
+    private float healthStart = 20.0f;
+    
+    public void OnStart()
+    {
+        healthStart = health;
+    }
     
     public void Damage(float amt)
     {
@@ -42,7 +47,7 @@ public class CerealBox : MonoBehaviour
         if(spawner.numMoths <= 0)
         {
             Destroy(gameObject);
-            return health;
+            return (health+healthStart)/2.0f;
         }
         return 0;
     }
