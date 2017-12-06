@@ -22,9 +22,19 @@ public class MothDiver : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        anim = GetComponent<Animator>();
-
         plr = player.gameObject;
+        
+        anim = GetComponent<Animator>();
+    }
+    
+    bool PlayerInRange()
+    {
+        if(Vector3.Distance(player.position, transform.position) > startDistance)
+            return false;
+        
+        bool linecast = Physics.Linecast(transform.position, player.position, (1 << 9));
+        
+        return !linecast;
     }
 
     // Update is called once per frame
@@ -32,7 +42,7 @@ public class MothDiver : MonoBehaviour
     {
         if (!chasing)
         {
-            if (Vector3.Distance(player.position, transform.position) <= startDistance)
+            if (PlayerInRange())
                 BeginChase();
             else
                 return;
