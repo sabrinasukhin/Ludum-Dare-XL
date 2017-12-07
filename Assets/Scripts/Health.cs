@@ -106,9 +106,9 @@ public class Health : MonoBehaviour
         healthBar.value = CalcHealth();
     }
 
-    public void LoseHealth()
+    public void LoseHealth(float amount)
     {
-        currentHealth -= 10.00f;
+        currentHealth -= amount;
         healthBar.value = CalcHealth();
     }
 

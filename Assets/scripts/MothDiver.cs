@@ -7,6 +7,7 @@ public class MothDiver : MonoBehaviour
     public float startDistance = 4.0f;
     public float moveSpeed = 5.0f;
     public float rotationSpeed = 3.0f;
+    public float damage = 14.0f;
 
     public Transform player;
     
@@ -72,7 +73,7 @@ public class MothDiver : MonoBehaviour
     {
         if (!hasHurtPlayer && collider.tag == "Player")
         {
-            plr.GetComponent<Health>().LoseHealth();
+            plr.GetComponent<Health>().LoseHealth(damage);
             Destroy(gameObject);
             hasHurtPlayer = true;
         }
