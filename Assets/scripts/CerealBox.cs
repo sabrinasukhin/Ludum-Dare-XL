@@ -6,17 +6,23 @@ using UnityEngine;
 public class CerealBox : MonoBehaviour
 {
     public float health = 20.0f;
+    public float mothEatenWeight = 0.65f;
     public AudioSource audioMothEat;
     
     public CerealSpawner spawner;
     
     public GameObject ashPrefab;
     
-    private float healthStart = 20.0f;
+    private float healthStart;
     
     public void OnStart()
     {
         healthStart = health;
+        
+        if(mothEatenWeight > 1.0f)
+            mothEatenWeight = 1.0f;
+        else if(mothEatenWeight < 0.0f)
+            mothEatenWeight = 0.0f;
     }
     
     public void Damage(float amt)
@@ -47,7 +53,7 @@ public class CerealBox : MonoBehaviour
         if(spawner.numMoths <= 0)
         {
             Destroy(gameObject);
-            return (health+healthStart)/2.0f;
+            return health*mothEatenWeight + healthStart*(1.0f-mothEatenWeight);
         }
         return 0;
     }

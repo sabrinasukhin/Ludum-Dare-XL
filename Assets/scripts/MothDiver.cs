@@ -18,6 +18,8 @@ public class MothDiver : MonoBehaviour
     private GameObject plr;
     
     public DiveMothSpawner spawner;
+    
+    private bool hasHurtPlayer = false;
 
     // Use this for initialization
     void Start()
@@ -68,10 +70,11 @@ public class MothDiver : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player")
+        if (!hasHurtPlayer && collider.tag == "Player")
         {
             plr.GetComponent<Health>().LoseHealth();
             Destroy(gameObject);
+            hasHurtPlayer = true;
         }
     }
     
